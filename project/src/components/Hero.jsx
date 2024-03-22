@@ -4,7 +4,7 @@ import '../index.css'
 
 function Hero() {
   return (
-    <div>Hero</div>
+    <div className='h-screen bg-zinc-900 text-white'>Hero</div>
   )
 }
 

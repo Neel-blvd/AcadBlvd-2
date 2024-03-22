@@ -19,7 +19,7 @@ function NavBar() {
 
     const wideNavBar = () => {
         return(
-            <div className='h-16 bg-black text-orange-600 flex border-b-2 border-orange-600'>
+            <div className='h-16 bg-black text-orange-600 flex border-b border-orange-600'>
                 <button>
                     <img src={logo} className='w-28'></img>
                 </button>
@@ -47,7 +47,7 @@ function NavBar() {
         return(
             <>
                 {!showMenu ?
-                    <div className='bg-black flex justify-between'>
+                    <div className='bg-black flex justify-between border-b border-orange-600'>
                         <div>
                             <img src={logo} className='w-24 p-1'></img>
                         </div>
