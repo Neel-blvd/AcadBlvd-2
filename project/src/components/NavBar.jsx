@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../index.css'
 import logo from '../public/AcadBlvd.png'
 import menu from '../public/menu.png'
@@ -20,22 +21,28 @@ function NavBar() {
         return(
             <div className='h-16 bg-black text-orange-600 flex border-b-2 border-orange-600'>
                 <button>
-                    <img src={logo} className='w-28'>
-                    </img>
+                    <img src={logo} className='w-28'></img>
                 </button>
-                <button className='ml-2 text-lg hover:scale-105 hover:font-bold pt-1 w-32'>
-                    Home
-                </button>
-                <button className='ml-4 text-lg hover:scale-105 hover:font-bold pt-1 w-24'>
-                    About
-                </button>
-                <button className='ml-6 text-lg hover:scale-105 hover:font-bold pt-1 w-32'>
-                    Contact Me
-                </button>
+                <Link to="/">
+                    <button className='ml-2 text-lg hover:scale-105 hover:font-bold py-4 w-32'>
+                        Home
+                    </button>
+                </Link>
+                <Link to="/about">
+                    <button className='ml-4 text-lg hover:scale-105 hover:font-bold py-4 w-24'>
+                        About
+                    </button>
+                </Link>
+                <Link to="/contactme">
+                    <button className='ml-6 text-lg hover:scale-105 hover:font-bold py-4 w-32'>
+                        Contact Me
+                    </button>
+                </Link>
             </div>
         );
     }
 
+                
     const narrowNavBar = () => {
         return(
             <>
@@ -59,24 +66,26 @@ function NavBar() {
                             </button>
                         </div>
                         <div className='w-screen h-screen flex flex-col justify-center space-y-24'>
-                            <button className='text-orange-600 text-3xl'>
-                                Home
+                            <button onClick={() => setShowMenu(false)} 
+                                className='text-orange-600 text-3xl'>
+                                <Link to="/">Home</Link>
                             </button>
-                            <button className='text-orange-600 text-3xl'>
-                                About
+                            <button onClick={() => setShowMenu(false)} 
+                                className='text-orange-600 text-3xl'>
+                                <Link to="/about">About</Link>
                             </button>
-                            <button className='text-orange-600 text-3xl'>
-                                Contact Me
+                            <button onClick={() => setShowMenu(false)} 
+                                className='text-orange-600 text-3xl'>
+                                <Link to="/contactme">Contact Me</Link>
                             </button>
                         </div>
                     </div>
-
                 }
             </>
         )
     }
 
-    
+
     return (
         <>
             {scWidth > 768 ?
