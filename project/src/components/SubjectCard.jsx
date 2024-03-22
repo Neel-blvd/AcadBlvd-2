@@ -1,9 +1,13 @@
 import React from 'react'
 import '../index.css'
 
-function SubjectCard() {
+function SubjectCard(props) {
   return (
-    <div>SubjectCard</div>
+    <div className='w-64 h-64 border rounded-lg text-orange-600'>
+      {props.x}
+    </div>
+      
+    
   )
 }
 
