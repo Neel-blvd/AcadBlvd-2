@@ -9,7 +9,7 @@ import ContactMe from './components/ContactMe'
 
 function App() {
   return (
-    <div>
+    <div className='font-mono'>
       <NavBar />
       
       <Routes>
@@ -17,6 +17,9 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contactme' element={<ContactMe />} />
       </Routes>
+      <footer className='h-40 bg-zinc-900'>
+
+      </footer>
     </div>
   )
 }

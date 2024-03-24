@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import '../index.css'
 import logo from '../public/AcadBlvd.png'
 import menu from '../public/menu.png'
@@ -9,6 +9,8 @@ function NavBar() {
 
     const [scWidth, setScWidth] = useState(window.innerWidth);
     const [showMenu, setShowMenu] = useState(false);
+    const [activePage, setActivePage] = useState(1);
+    const location = useLocation();
     
     useEffect(
         () => 
@@ -16,6 +18,13 @@ function NavBar() {
         ,
         []
     )
+    useEffect(() => {
+            switch(location.pathname){
+            case "/" : setActivePage(1); break;
+            case "/about" : setActivePage(2); break;
+            case "/contactme" : setActivePage(3); break;
+        }
+    },[location.pathname])
 
     const wideNavBar = () => {
         return(
@@ -26,16 +35,19 @@ function NavBar() {
                 <Link to="/">
                     <button className='ml-2 text-lg hover:scale-105 hover:font-bold py-4 w-32'>
                         Home
+                        {activePage===1 && <div className='w-4 border ml-11 border-orange-600'></div>}
                     </button>
                 </Link>
                 <Link to="/about">
                     <button className='ml-4 text-lg hover:scale-105 hover:font-bold py-4 w-24'>
                         About
+                        {activePage===2 && <div className='w-4 border ml-6 border-orange-600'></div>}
                     </button>
                 </Link>
                 <Link to="/contactme">
                     <button className='ml-6 text-lg hover:scale-105 hover:font-bold py-4 w-32'>
                         Contact Me
+                        {activePage===3 && <div className='w-4 border ml-4 border-orange-600'></div>}
                     </button>
                 </Link>
             </div>
