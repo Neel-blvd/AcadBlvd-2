@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Route, Routes} from 'react-router-dom'
 import './index.css'
 import NavBar from './components/NavBar'
@@ -8,6 +8,7 @@ import ContactMe from './components/ContactMe'
 
 
 function App() {
+  
   return (
     <div className='font-mono'>
       <NavBar />

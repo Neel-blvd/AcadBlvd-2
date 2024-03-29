@@ -25,6 +25,7 @@ function NavBar() {
             case "/contactme" : setActivePage(3); break;
         }
     },[location.pathname])
+    
 
     const wideNavBar = () => {
         return(
