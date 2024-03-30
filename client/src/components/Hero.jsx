@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SubjectCard from './SubjectCard'
 import '../index.css'
 
@@ -139,6 +139,14 @@ const subjects = [
 function Hero() {
 
   const [dynamicSubjects, setDynamicSubjects] = useState(subjects);
+  const [scWidth, setScWidth] = useState(window.innerWidth);
+
+  useEffect(
+    () => {
+      window.addEventListener('resize', () => setScWidth(window.innerWidth))
+    },
+    []
+  )
 
   function handleSearch(e){
     const filteredArray = subjects.map((cycle) => {
@@ -162,6 +170,7 @@ function Hero() {
     setDynamicSubjects(filteredArray);
   }
 
+
   return (
     <div className='min-h-screen bg-zinc-900'>
       
@@ -174,19 +183,28 @@ function Hero() {
       </div>
 
       <div className='pt-10 text-orange-600'>
-        {dynamicSubjects.map((cycle, cycleIndex) => {
-          return <div key={cycleIndex} className='mt-12'>
-                  {cycle.map((ele, eleIndex) => {
-                    if(eleIndex == 0)
-                      return <p className='text-center text-4xl underline mb-5' key={eleIndex}>{ele}</p>
-                    return <div key={eleIndex} className='flex justify-center space-x-48'>
-                            {ele.map((subject, subjectIndex) => 
-                              <SubjectCard key={subjectIndex} x={subject.x} y={subject.y} />
-                            )}
-                          </div>
-                  })}
-                </div>
-        })}
+        
+          {dynamicSubjects.map((cycle, cycleIndex) => {
+            return <div key={cycleIndex} className='mt-12'>
+                    {cycle.map((ele, eleIndex) => {
+                      if(eleIndex == 0)
+                        return <p className='text-center text-4xl underline mb-5' key={eleIndex}>{ele}</p>
+                      if(scWidth > 768)
+                        return <div key={eleIndex} className='flex justify-center space-x-48'>
+                                {ele.map((subject, subjectIndex) => 
+                                  <SubjectCard key={subjectIndex} x={subject.x} y={subject.y} />
+                                )}
+                              </div>
+                      else
+                        return <div key={eleIndex} className='flex flex-col items-center space-y-2'>
+                                {ele.map((subject, subjectIndex) => 
+                                  <SubjectCard key={subjectIndex} x={subject.x} y={subject.y} />
+                                )}
+                              </div>
+                    })}
+                  </div>
+            })
+          }
       </div>
     </div>
   )
