@@ -8,19 +8,24 @@ app.use(cors());
 app.use(express.json());
 
 
+//Just to check if my server works
 app.get('/', (req, res) => {
     res.json([{greeting: "Hello there"}, {greeting: "Whatever"}]);
 });
-app.post('/', async(req, res) => {
-    const newUser = await Users.create({username: "neel", password: "neel"});
-    res.json(newUser);
-})
-app.get('/all', async(req, res) => {
-    const allUsers = await Users.find();
-    res.json(allUsers);
+
+//To get the password of the username entered, while trying to log in
+app.get('/users/:username', async(req, res) => {
+    const { username } = req.params;
+    const User = await Users.findOne({username: username});
+    res.json(User.password);
 });
 
-
+//To create a new user while trying to sign up
+app.post('/users', async(req, res) => {
+    //console.log(req.body)
+    const newUser = await Users.create({firstName: req.body.firstName, username: req.body.username, password: req.body.password});
+    res.json(newUser);
+})
 
 
 
