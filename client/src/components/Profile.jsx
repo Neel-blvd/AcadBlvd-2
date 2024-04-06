@@ -3,7 +3,7 @@ import profile from '../public/orangeProfile.png'
 import {UserContext} from '../App'
 
 
-function Profile( {setShowModal} ) {
+function Profile( {setShowModal, setIsLoggedIn} ) {
 
     const [clicked, setClicked] = useState(false);
     const username = useContext(UserContext);
@@ -12,7 +12,7 @@ function Profile( {setShowModal} ) {
   return (
     !clicked 
     ?
-        <div onClick={() => setClicked(!clicked)} className='cursor-pointer'>
+        <div onClick={() => setClicked(!clicked)} className='cursor-pointer grayscale hover:filter-none'>
             <img className='w-9' src={profile}></img>
         </div>
     :
@@ -25,6 +25,10 @@ function Profile( {setShowModal} ) {
                 <div className='p-2 text-white hover:text-orange-600 cursor-pointer'
                     onClick={() => setShowModal(1)}>
                         Change Password 
+                </div>
+                <div className='p-3 text-white hover:text-orange-600 cursor-pointer'
+                    onClick={() => setIsLoggedIn(false)}>
+                    Log Out
                 </div>
                 <div className='p-3 text-white hover:text-red-600 cursor-pointer' 
                     onClick={() => setShowModal(2)}>

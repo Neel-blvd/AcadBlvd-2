@@ -32,7 +32,7 @@ function App() {
       return(
         <UserContext.Provider value = {username}>
             <div className='font-mono'>
-              <NavBar setShowModal={setShowModal} />
+              <NavBar setShowModal={setShowModal} setIsLoggedIn={setIsLoggedIn} />
               
               <Routes>
                 <Route path='/' element={<Hero />} />
@@ -49,13 +49,17 @@ function App() {
     else if(showModal == 1)
     {
       return (
-        <ChangePasswordModal setShowModal={setShowModal} />
+        <UserContext.Provider value = {username}>
+          <ChangePasswordModal setShowModal={setShowModal} />
+        </UserContext.Provider>
       );
     }
-    else
+    else if(showModal == 2)
     {
       return (
-        <DeleteAccountModal setShowModal={setShowModal} />
+        <UserContext.Provider value = {username}>
+          <DeleteAccountModal setShowModal={setShowModal} setIsLoggedIn={setIsLoggedIn} />
+        </UserContext.Provider>
       );
     }
   }

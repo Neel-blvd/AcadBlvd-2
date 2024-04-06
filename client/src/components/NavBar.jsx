@@ -6,7 +6,7 @@ import menu from '../public/menu.png'
 import line from '../public/horzline.png'
 import Profile from './Profile'
 
-function NavBar( {setShowModal} ) {
+function NavBar( {setShowModal, setIsLoggedIn} ) {
 
     const [scWidth, setScWidth] = useState(window.innerWidth);
     const [showMenu, setShowMenu] = useState(false);
@@ -52,7 +52,9 @@ function NavBar( {setShowModal} ) {
                         {activePage===3 && <div className='w-4 border ml-4 border-orange-600'></div>}
                     </button>
                 </Link>
-                <div className='ml-auto mr-10 pt-3'><Profile setShowModal={setShowModal} /></div>
+                <div className='ml-auto mr-10 pt-3'>
+                    <Profile setShowModal={setShowModal} setIsLoggedIn={setIsLoggedIn} />
+                </div>
             </div>
         );
     }

@@ -19,6 +19,7 @@ function LoggedOutPage(props) {
 
     function handleSignUp()
     {
+        const username = signUpFormData.username;
         fetch('http://localhost:5000/users',{
             method: 'POST',
             body: JSON.stringify(signUpFormData),
@@ -28,6 +29,7 @@ function LoggedOutPage(props) {
         .then(res => console.log(res))  //Kind of optional lol
         .catch(err => console.error(err));      //Mandatory, as the error should be caught, not let loose!
 
+        setUsername(username);
         setIsLoggedIn(true);
         
     }

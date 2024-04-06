@@ -31,10 +31,24 @@ app.post('/users', async(req, res) => {
     
 })
 
-// app.get('/test', (req, res) => {
-   
-//     res.json({response: "Good"});
-// })
+//To change the password
+app.put('/users', async(req, res) => {
+    //req contains the 1)username, whose password should be updated and the 2)updated password
+    const user = await Users.findOne({username: req.body.username})
+    user.password = req.body.password;
+    await user.save();
+
+    res.json(user);
+})
+
+//To delete a user
+app.delete('/users', async(req, res) => {
+    //req contains the username, who we wanna delete
+    const deletedUser = await Users.findOneAndDelete({username: req.body.username})
+    console.log(deletedUser);
+    console.log("h")
+    res.json(deletedUser);
+})
 
 
 
