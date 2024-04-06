@@ -18,8 +18,8 @@ function SubjectCard(props) {
         <div className='w-64 h-60 rounded-3xl bg-black text-orange-600 text-center text-2xl 
           font-mono hover:cursor-pointer'
           onClick={() => setClicked(!clicked)}>
-          <p className='pt-12'>Hiiii</p>
-          <p className=' pt-10'>Heyyyy</p>
+          <p className='pt-12'>Practise</p>
+          <p className=' pt-10'>Quiz</p>
         </div>
     }
     </>

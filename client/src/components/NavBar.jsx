@@ -4,8 +4,9 @@ import '../index.css'
 import logo from '../public/AcadBlvd.png'
 import menu from '../public/menu.png'
 import line from '../public/horzline.png'
+import Profile from './Profile'
 
-function NavBar() {
+function NavBar( {setShowModal} ) {
 
     const [scWidth, setScWidth] = useState(window.innerWidth);
     const [showMenu, setShowMenu] = useState(false);
@@ -51,6 +52,7 @@ function NavBar() {
                         {activePage===3 && <div className='w-4 border ml-4 border-orange-600'></div>}
                     </button>
                 </Link>
+                <div className='ml-auto mr-10 pt-3'><Profile setShowModal={setShowModal} /></div>
             </div>
         );
     }
@@ -79,6 +81,9 @@ function NavBar() {
                             </button>
                         </div>
                         <div className='w-screen h-screen flex flex-col justify-center space-y-24'>
+                            <button className='text-orange-600 text-3xl'>
+                                <p>My Profile</p>
+                            </button>
                             <button onClick={() => setShowMenu(false)} 
                                 className='text-orange-600 text-3xl'>
                                 <Link to="/">Home</Link>

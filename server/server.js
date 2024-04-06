@@ -9,15 +9,18 @@ app.use(express.json());
 
 
 //Just to check if my server works
-app.get('/', (req, res) => {
-    res.json([{greeting: "Hello there"}, {greeting: "Whatever"}]);
-});
+// app.get('/', (req, res) => {
+//     res.json([{greeting: "Hello there"}, {greeting: "Whatever"}]);
+// });
 
 //To get the password of the username entered, while trying to log in
 app.get('/users/:username', async(req, res) => {
     const { username } = req.params;
-    const User = await Users.findOne({username: username});
-    res.json(User.password);
+    const requiredUser = await Users.findOne({username: username});
+    if(requiredUser === null || (Array.isArray(requiredUser) && requiredUser.length() == 0))
+        res.json(null)
+    else
+        res.json(requiredUser.password);
 });
 
 //To create a new user while trying to sign up
@@ -25,7 +28,13 @@ app.post('/users', async(req, res) => {
     //console.log(req.body)
     const newUser = await Users.create({firstName: req.body.firstName, username: req.body.username, password: req.body.password});
     res.json(newUser);
+    
 })
+
+// app.get('/test', (req, res) => {
+   
+//     res.json({response: "Good"});
+// })
 
 
 

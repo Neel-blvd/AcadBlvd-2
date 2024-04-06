@@ -15,6 +15,7 @@ function LoggedOutPage(props) {
     })
     const [wrongPasswordText, setWrongPasswordText] = useState(false);
     const setIsLoggedIn = props.setIsLoggedIn;
+    const setUsername = props.setUsername;
 
     function handleSignUp()
     {
@@ -36,13 +37,13 @@ function LoggedOutPage(props) {
         const username = logInFormData.username;
         const password = logInFormData.password;
         const x = await fetch(`http://localhost:5000/users/${username}`);
-        if (!x.ok) {
-            throw new Error('Failed to fetch user data');
-        }
         const fetchedPassword = await x.json();
         
         if(fetchedPassword === password)
+        {
+            setUsername(username);
             setIsLoggedIn(true);
+        }
         else
             setWrongPasswordText(true);
     }
@@ -68,12 +69,12 @@ function LoggedOutPage(props) {
                     value={logInFormData.username}
                     onChange={(e) => setLogInFormData({...logInFormData, username: e.target.value})}>
                 </input>
-                <input type='text' className='bg-black rounded-lg mt-14 p-2 w-80 focus:outline-none'
+                <input type='password' className='bg-black rounded-lg mt-14 p-2 w-80 focus:outline-none'
                     placeholder='Password:'
                     value={logInFormData.password}
                     onChange={(e) => setLogInFormData({...logInFormData, password: e.target.value})}>
                 </input>
-                { wrongPasswordText && <p>Wrong Username or Password, try again!</p>}
+                { wrongPasswordText && <p>Wrong Username or Password, try again!</p> }
                 <button className='bg-orange-600 hover:scale-105 p-2 px-4 rounded-xl
                     mt-12 text-white'
                     onClick={() => handleLogIn()}>
@@ -110,7 +111,7 @@ function LoggedOutPage(props) {
                     value={signUpFormData.username}
                     onChange={(e) => setSignUpFormData({...signUpFormData, username: e.target.value})}>
                 </input>
-                <input type='text' className='rounded-lg mt-8 p-2 w-80 focus:outline-none bg-black'
+                <input type='password' className='rounded-lg mt-8 p-2 w-80 focus:outline-none bg-black'
                     placeholder='Set up a password:'
                     value={signUpFormData.password}
                     onChange={(e) => setSignUpFormData({...signUpFormData, password: e.target.value})}>
