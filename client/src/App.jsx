@@ -8,6 +8,7 @@ import ContactMe from './components/ContactMe'
 import LoggedOutPage from './components/LoggedOutPage'
 import ChangePasswordModal from './components/ChangePasswordModal'
 import DeleteAccountModal from './components/DeleteAccountModal'
+import Practice from './components/Practice'
 
 //User Context
 export const UserContext = createContext();
@@ -38,6 +39,7 @@ function App() {
                 <Route path='/' element={<Hero />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/contactme' element={<ContactMe />} />
+                <Route path='/practice/:subjectTitle' element={<Practice />} />
               </Routes>
               <footer className='h-40 bg-zinc-900'>
 

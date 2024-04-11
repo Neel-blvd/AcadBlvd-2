@@ -24,6 +24,7 @@ function NavBar( {setShowModal, setIsLoggedIn} ) {
             case "/" : setActivePage(1); break;
             case "/about" : setActivePage(2); break;
             case "/contactme" : setActivePage(3); break;
+            default: setActivePage(0);
         }
     },[location.pathname])
     

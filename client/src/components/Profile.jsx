@@ -16,8 +16,8 @@ function Profile( {setShowModal, setIsLoggedIn} ) {
             <img className='w-9' src={profile}></img>
         </div>
     :
-        <div>
-            <div onClick={() => setClicked(!clicked)} className='cursor-pointer w-48 flex justify-end'>
+        <div className='relative z-50'>
+            <div onClick={() => setClicked(!clicked)} className='cursor-pointer w-48 flex justify-end '>
                 <img className='w-9' src={profile}></img>
             </div>
             <div className='bg-black rounded-2xl w-48 text-center text-lg mt-4'>
