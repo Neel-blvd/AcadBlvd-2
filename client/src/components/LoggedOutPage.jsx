@@ -30,17 +30,26 @@ function LoggedOutPage(props) {
         .then(res => console.log(res))  //Kind of optional lol
         .catch(err => console.error(err));      //Mandatory, as the error should be caught, not let loose!
 
-        setUsername(username);
-        setIsLoggedIn(true);
+        
+        if(signUpFormData.username != "" && signUpFormData.password != "" && signUpFormData.firstName != "")
+        {
+            setUsername(username);
+            setIsLoggedIn(true);
+        }
+        else
+            alert("Can't leave it blank bro");
         
     }
 
     async function handleLogIn()
     {
-        const username = logInFormData.username;
+        let username = logInFormData.username;
         const password = logInFormData.password;
         try
         {
+            if(username == "")
+                username = "\"\"";
+            console.log("loginformdata username is "+username);
             const x = await fetch(`http://localhost:5000/users/${username}`)
             if(!x.ok)
                 throw new Error();
@@ -55,6 +64,7 @@ function LoggedOutPage(props) {
                 setWrongPasswordText(true);
         }
         catch(e){
+            setWrongPasswordText(false);
             alert('Server failed or is inactive');
         }
     }

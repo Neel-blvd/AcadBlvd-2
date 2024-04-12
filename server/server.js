@@ -14,6 +14,7 @@ app.use(express.json());
 //To get the password of the username entered, while trying to log in
 app.get('/users/:username', async(req, res) => {
     const { username } = req.params;
+    console.log(username);
     const requiredUser = await Users.findOne({username: username});
     
     if(requiredUser === null || (Array.isArray(requiredUser) && requiredUser.length() == 0))
