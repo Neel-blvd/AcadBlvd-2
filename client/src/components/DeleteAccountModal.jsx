@@ -20,7 +20,7 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
 
 
   return (
-    <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center'>
+    <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center font-mono'>
       <div className='flex justify-between w-1/3'>
         <p className='text-orange-600 text-3xl'>
           Delete Account
@@ -34,11 +34,11 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
           Are you sure you want to delete your account?
         </p>
         <div className='flex justify-evenly mt-20'>
-          <button className='p-3 w-24 rounded-xl text-white bg-orange-600 hover:scale-105 font-bold'
+          <button className='text-3xl text-orange-600 hover:scale-110 font-bold'
             onClick={() => setShowModal(0)}>
             No
           </button>
-          <button className='p-3 w-24 rounded-xl text-white bg-red-600 hover:scale-105 font-bold'
+          <button className='text-3xl text-red-600 hover:scale-110 font-bold'
             onClick={handleDelete}>
             Yes
           </button>

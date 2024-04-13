@@ -14,7 +14,6 @@ app.use(express.json());
 //To get the password of the username entered, while trying to log in
 app.get('/users/:username', async(req, res) => {
     const { username } = req.params;
-    console.log(username);
     const requiredUser = await Users.findOne({username: username});
     
     if(requiredUser === null || (Array.isArray(requiredUser) && requiredUser.length() == 0))
@@ -64,7 +63,9 @@ app.post('/qpapers', async(req, res) => {
 })
 
 
-//my get method
+//my get method (using 'PUT', instead of 'GET', 
+//becuase 'GET' only allows you to send data at the end of the URL,
+//but sensetive data is involved and cannot be sent at the end of my URL)
 app.put('/qpapers', async(req, res) => {
     let questionPapers;
     if(req.body.year == "" && req.body.type == "")

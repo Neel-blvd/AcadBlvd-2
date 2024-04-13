@@ -47,7 +47,7 @@ function ChangePasswordModal( {setShowModal} ) {
 
 
   return (
-    <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center'>
+    <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center font-mono'>
       <div className='flex justify-between w-1/3'>
         <p className='text-orange-600 text-3xl'>
           Change Password
