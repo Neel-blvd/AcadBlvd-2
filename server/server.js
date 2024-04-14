@@ -52,12 +52,21 @@ app.delete('/users', async(req, res) => {
     res.json(deletedUser);
 })
 
+// 5
+//To delete all users
+app.delete('/all/users', async(req, res) => {
+    const deletedUsers = await Users.deleteMany({username: {$gte: ''}});
+    
+    res.json(deletedUsers);
+})
+
+
 
 // 1
 //To upload a question paper(although not required in the front-end, just to store it in the collection)
 app.post('/qpapers', async(req, res) => {
-    const newQPaper = await QPapers.create({subject: 'em1', type: 'makeup', year: '2017', 
-        link: "https://drive.google.com/file/d/1zZ9akjzC6rFDGgdyy2M9Z68jU544Phu9/preview"});
+    const newQPaper = await QPapers.create({subject: 'Basic Electronics', type: 'late admission', year: '2022', 
+        link: "https://drive.google.com/file/d/1A-LUM2tgKbm2wRKI2SbCEMRC_wUfLI1f/preview"});
 
     res.json(newQPaper);
 })
