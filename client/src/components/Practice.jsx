@@ -14,7 +14,7 @@ function Practice() {
     })
     
     useEffect(() => {
-        const getPdfFile = async() => {
+        const getPdfFiles = async() => {
             setLinks(null)
             
             setTimeout(async() => {
@@ -27,7 +27,7 @@ function Practice() {
                 setLinks(entities);
             }, 1000)
         }
-        getPdfFile();
+        getPdfFiles();
     }, [filter]);
     
 

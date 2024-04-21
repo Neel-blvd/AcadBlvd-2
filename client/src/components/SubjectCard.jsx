@@ -6,7 +6,8 @@ import backArrow from '../public/left-arrow.png';
 function SubjectCard(props) {
 
   const [clicked, setClicked] = useState(false);
-  const linkString = `/practice/${props.x}`
+  const linkToPractice = `/practice/${props.x}`;
+  const linkToQuiz = `/quiz/${props.x}`;
 
   return (
     <>
@@ -26,8 +27,8 @@ function SubjectCard(props) {
               </img>
               <p className='mx-auto'>{props.x}</p>
             </div>
-            <Link to={linkString}><p className='text-white hover:text-orange-600'>Practise</p></Link>
-            <p className='text-white hover:text-orange-600'>Quiz</p>
+            <Link to={linkToPractice}><p className='text-white hover:text-orange-600'>Practise</p></Link>
+            <Link to={linkToQuiz}><p className='text-white hover:text-orange-600'>Quiz</p></Link>
         </div>
     }
     </>
