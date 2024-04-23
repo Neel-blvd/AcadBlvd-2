@@ -1,8 +1,14 @@
 import React from 'react'
 
-function QuestionSelector( {qno, activeQuestionNo, setActiveQuestionNo} ) {
+function QuestionSelector( {qno, activeQuestionNo, setActiveQuestionNo, optionSelected} ) {
+    
+    const optionSelected1 = optionSelected || 0;
+
+
   return (
-    <div className={`text-3xl rounded-lg mx-3 ${qno == activeQuestionNo ? 'bg-black text-orange-600':''} transition-all`}>
+    <div className={`text-3xl rounded-lg mx-3 ${qno == activeQuestionNo ? 
+        'bg-black' : ''} ${optionSelected1 === 0 ? 
+        'text-orange-600' : 'text-green-600'} transition-all`}>
         {qno==1 &&  activeQuestionNo == 1
         ?
             <div>
