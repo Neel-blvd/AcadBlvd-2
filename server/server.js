@@ -157,12 +157,32 @@ app.post('/quizzes', async(req, res) => {
 
     res.json(quiz);
 })
-
+// To get the title of the quiz's subject to render on the screen
 app.get('/quizzes/:subjectTitle', async(req, res) => {
     const { subjectTitle } = req.params;
     const quiz = await Quizzes.findOne({subject: subjectTitle});
 
     res.json(quiz);
+})
+// To get the current no. of quizzes taken by a particular username
+app.get('/quizzesTaken/:username', async(req, res) => {
+    const { username } = req.params;
+    const user = await Users.findOne({username: username});
+    const quizzesTaken = user.quizzestaken;
+
+    res.json(quizzesTaken);
+})
+// To update the quiz stats of a particular username
+app.put('/users/:username', async(req, res) => {
+    const { username } = req.params;
+    const user = await Users.findOne({username: username});
+    const {quizzestaken, quizzeshistory} = req.body; // req.body contains quiz stats
+    // Updating quiz stats in the database, and then saving it obviously
+    user.quizzestaken = quizzestaken;
+    user.quizzeshistory.push(quizzeshistory); // should not be overwritten, should merely be pushed
+    await user.save();
+
+    res.json(user);
 })
 
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from '../public/AcadBlvd.png'
 import bgimg from '../public/darkNightSky.jpg'
 import ScaleLoader from 'react-spinners/ScaleLoader'
+import spaceTravelShorter from '../public/spaceTravel-2Shorter.mp4'
 
 function LoggedOutPage(props) {
 
@@ -37,7 +38,7 @@ function LoggedOutPage(props) {
                 setIsLoading(false);
                 setUsername(signUpFormData.username);
                 setIsLoggedIn(true);
-            }, 3000)
+            }, 5000)
         }
         catch(e)
         {
@@ -85,7 +86,9 @@ function LoggedOutPage(props) {
             isLoading
             ?
                 <div className='bg-zinc-900 h-screen font-mono'>
-                    <img src={bgimg} className='absolute'></img>
+                    <video autoPlay className='absolute w-full'>
+                        <source src={spaceTravelShorter} type='video/mp4'></source>
+                    </video>
                     <div className='absolute w-full'>   
                         <button>
                             <img src={logo} className='w-28'></img>
@@ -154,7 +157,9 @@ function LoggedOutPage(props) {
             {isLoading
             ?
                 <div className='bg-zinc-900 h-screen font-mono'>
-                    <img src={bgimg} className='absolute'></img>
+                    <video autoPlay className='absolute w-full'>
+                        <source src={spaceTravelShorter} type='video/mp4'></source>
+                    </video>
                     <div className='absolute w-full'>   
                         <button>
                             <img src={logo} className='w-28'></img>

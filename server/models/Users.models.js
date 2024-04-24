@@ -4,14 +4,20 @@ const usersSchema = mongoose.Schema({
     firstName: String,
     username: String,
     password: String,
-    quizzestaken: Number,
+    quizzestaken: {
+        type: Number,
+        default: 0
+    },
     quizzeshistory: [{
         subject: String,
+        takenOn: {
+            type: Date,
+            default: () => Date.now()
+        },
         quizzescontent: [{
             question: String,
             answers: [String],
-            attemptedanswer: String,
-            correctanswer: String
+            attemptedanswer: String
         }]
     }]
 });

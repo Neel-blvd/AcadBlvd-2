@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import QuestionSelector from './QuestionSelector'
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import submitButton from '../public/quizSubmit.png'
+import { UserContext } from '../App'
 
 function Quiz() {
 
@@ -12,6 +13,7 @@ function Quiz() {
     const [contents, setContents] = useState([]);
     const [optionSelectedArray, setOptionSelectedArray] = useState(Array(10).fill(0));
     const [attemptedQuestions, setAttemptedQuestions] = useState(0);
+    const username = useContext(UserContext);
     
     useEffect(() => {
         const getQuestions = () => {
@@ -46,6 +48,36 @@ function Quiz() {
                 setAttemptedQuestions(attemptedQuestions + 1);
             setOptionSelectedArray(updatedArray);
         }
+    }
+
+    async function handleSubmit(){
+        const x = await fetch(`http://localhost:5000/quizzesTaken/${username}`);
+        const quizzesTaken = await x.json();
+
+        let actualOptionsArray = [];
+        optionSelectedArray.forEach((optionSelected, index) => {
+            const ans = contents[index].answers[optionSelected - 1];
+            actualOptionsArray.push(ans);
+        })
+        
+        let quizzesContent = [];
+        contents.forEach((content, index) => {
+            const {question, answers} = content;
+            const x = {question: question, answers: answers, attemptedanswer: actualOptionsArray[index]}; // to actual option
+            quizzesContent.push(x);
+        })
+        
+        const quizzesHistory = {subject: subjectTitle, quizzescontent: quizzesContent};
+
+        // Finally sending the quiz stats to the back-end
+        fetch(`http://localhost:5000/users/${username}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                quizzestaken: quizzesTaken + 1,
+                quizzeshistory: quizzesHistory
+            }),
+            headers: {'Content-Type': 'application/json'}
+        })
     }
 
 
@@ -110,10 +142,11 @@ function Quiz() {
                             </div>
                         </div>
                         <div>
-                            <p className='ml-10'>
+                            <div className='ml-10'>
                                 Attemped <p className='text-green-600 inline'>{attemptedQuestions}</p> of 10
-                            </p>
-                            <img src={submitButton} className='w-15 ml-10'></img>
+                            </div>
+                            <img src={submitButton} className='w-15 ml-10'
+                                onClick={handleSubmit}></img>
                         </div>
                     </div>
                 </div>
