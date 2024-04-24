@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react'
 import profile from '../public/orangeProfile.png'
 import {UserContext} from '../App'
+import { Link } from 'react-router-dom';
 
 
 function Profile( {setShowModal, setIsLoggedIn} ) {
 
     const [clicked, setClicked] = useState(false);
     const username = useContext(UserContext);
+    const profilePageUrl = `/profile/${username}`;
 
 
   return (
@@ -22,6 +24,9 @@ function Profile( {setShowModal, setIsLoggedIn} ) {
             </div>
             <div className='bg-black rounded-2xl w-48 text-center text-lg mt-4'>
                 <div className='p-2 text-orange-600 border-b border-orange-600'>{username}</div>
+                <Link to={profilePageUrl}><div className='p-2 text-white hover:text-orange-600 cursor-pointer'>
+                        Profile
+                </div></Link>
                 <div className='p-2 text-white hover:text-orange-600 cursor-pointer'
                     onClick={() => setShowModal(1)}>
                         Change Password 

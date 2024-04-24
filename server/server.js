@@ -185,6 +185,15 @@ app.put('/users/:username', async(req, res) => {
     res.json(user);
 })
 
+app.get('/users/stats/:username', async(req, res) => {
+    const {username} = req.params;
+    const user = await Users.findOne({username: username});
+    const { quizzestaken, quizzeshistory } = user;
+    const userStats = {quizzestaken: quizzestaken, quizzeshistory: quizzeshistory};
+
+    res.json(userStats);
+})
+
 
 
 mongoose.connect('mongodb+srv://neelPhadke:w9Pt4CEp3jg3c97F@cluster0.puocqd9.mongodb.net/acadBlvdDB?retryWrites=true&w=majority&appName=Cluster0')
