@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import ScaleLoader from 'react-spinners/ScaleLoader';
+import ScaleLoader from 'react-spinners/ScaleLoader'
+import UserStatistic from './UserStatistic';
 
 function ProfilePage() {
 
@@ -45,9 +46,15 @@ function ProfilePage() {
                 {username}
             </p>
 
-            <p className='text-orange-600'>
+            <p className='text-orange-600 w-4/5 mx-auto text-xl mb-5'>
                 Quizzes taken: {userStats.quizzestaken}
             </p>
+            <div className='flex flex-col space-y-5'>
+                {
+                    userStats.quizzeshistory.map((history, index) =>
+                        <UserStatistic key={index} history={history} index={index} />)
+                }
+            </div>
         </div>
     }
     </div>

@@ -58,14 +58,19 @@ function Quiz() {
 
         let actualOptionsArray = [];
         optionSelectedArray.forEach((optionSelected, index) => {
-            const ans = contents[index].answers[optionSelected - 1];
+            let ans;
+            if(optionSelected == 0)
+                ans = null;
+            else
+                ans = contents[index].answers[optionSelected - 1];
             actualOptionsArray.push(ans);
         })
         
         let quizzesContent = [];
         contents.forEach((content, index) => {
-            const {question, answers} = content;
-            const x = {question: question, answers: answers, attemptedanswer: actualOptionsArray[index]}; // to actual option
+            const {question, answers, correctAnswer} = content;
+            const x = {question: question, answers: answers, correctanswer: correctAnswer,
+                    attemptedanswer: actualOptionsArray[index]}; // to actual option
             quizzesContent.push(x);
         })
         

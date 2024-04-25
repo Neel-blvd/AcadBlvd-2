@@ -17,6 +17,7 @@ const usersSchema = mongoose.Schema({
         quizzescontent: [{
             question: String,
             answers: [String],
+            correctanswer: String,
             attemptedanswer: String
         }]
     }]

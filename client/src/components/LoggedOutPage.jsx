@@ -3,6 +3,7 @@ import logo from '../public/AcadBlvd.png'
 import bgimg from '../public/darkNightSky.jpg'
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import spaceTravelShorter from '../public/spaceTravel-2Shorter.mp4'
+import { useNavigate } from 'react-router-dom'
 
 function LoggedOutPage(props) {
 
@@ -20,6 +21,7 @@ function LoggedOutPage(props) {
     const [isLoading, setIsLoading] = useState(false);
     const setIsLoggedIn = props.setIsLoggedIn;
     const setUsername = props.setUsername;
+    const navigate = useNavigate();
 
     async function handleSignUp(e)
     {
@@ -38,6 +40,7 @@ function LoggedOutPage(props) {
                 setIsLoading(false);
                 setUsername(signUpFormData.username);
                 setIsLoggedIn(true);
+                navigate('/');
             }, 5000)
         }
         catch(e)
@@ -65,6 +68,7 @@ function LoggedOutPage(props) {
                     setIsLoading(false);
                     setUsername(username);
                     setIsLoggedIn(true);
+                    navigate('/');
                 }, 3000)
             }
             else
