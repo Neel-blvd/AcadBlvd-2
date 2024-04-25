@@ -27,8 +27,14 @@ app.get('/users/:username', async(req, res) => {
 //To create a new user while trying to sign up
 app.post('/users', async(req, res) => {
     //console.log(req.body)
-    const newUser = await Users.create({firstName: req.body.firstName, username: req.body.username, password: req.body.password});
-    
+    let newUser;
+    try{
+        newUser = await Users.create({firstName: req.body.firstName, username: req.body.username, password: req.body.password});
+    }
+    catch(e){
+        newUser = null;
+    }
+        
     res.json(newUser);
     
 })

@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const usersSchema = mongoose.Schema({
     firstName: String,
-    username: String,
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: String,
     quizzestaken: {
         type: Number,

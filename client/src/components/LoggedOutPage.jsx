@@ -22,6 +22,7 @@ function LoggedOutPage(props) {
     const setIsLoggedIn = props.setIsLoggedIn;
     const setUsername = props.setUsername;
     const navigate = useNavigate();
+    const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
     async function handleSignUp(e)
     {
@@ -35,13 +36,19 @@ function LoggedOutPage(props) {
             if(!x.ok)
                 throw new Error();
 
-            setIsLoading(true)
-            setTimeout(() => {
-                setIsLoading(false);
-                setUsername(signUpFormData.username);
-                setIsLoggedIn(true);
-                navigate('/');
-            }, 5000)
+            const res = await x.json();
+            if(res == null)
+                setUsernameAlreadyExists(true);
+            else{
+                setUsernameAlreadyExists(false);
+                setIsLoading(true)
+                setTimeout(() => {
+                    setIsLoading(false);
+                    setUsername(signUpFormData.username);
+                    setIsLoggedIn(true);
+                    navigate('/');
+                }, 5000)
+            }
         }
         catch(e)
         {
@@ -139,7 +146,7 @@ function LoggedOutPage(props) {
                                 value={logInFormData.password}
                                 onChange={(e) => setLogInFormData({...logInFormData, password: e.target.value})}>
                             </input>
-                            { wrongPasswordText && <p>Wrong Username or Password, try again!</p> }
+                            { wrongPasswordText && <p>Wrong username or password, try again!</p> }
                             <button className='bg-orange-600 hover:scale-105 p-2 px-4 rounded-xl
                                 mt-12 text-black font-black text-lg'>
                                 Log In
@@ -210,6 +217,8 @@ function LoggedOutPage(props) {
                                 value={signUpFormData.username}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, username: e.target.value})}>
                             </input>
+                            { usernameAlreadyExists &&
+                                <p>Username already exists, try again!</p> }
                             <input required type='password' className='rounded-lg mt-4 p-2 w-80 focus:outline-none bg-black'
                                 placeholder='Set up a password:'
                                 value={signUpFormData.password}
