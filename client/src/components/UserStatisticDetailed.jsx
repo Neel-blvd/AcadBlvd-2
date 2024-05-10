@@ -43,7 +43,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
             <div className='flex justify-around text-orange-600 space-x-5 mb-5 mt-5'>
                 <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[0] == 
-                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-600 shadow-lg' : '' }
+                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' }
                     ${ quizzescontent[activeQuestionNo - 1].answers[0] == 
                         quizzescontent[activeQuestionNo - 1].attemptedanswer ? ( isCorrect ?
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>
@@ -53,7 +53,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
                 {isCorrect && <p className='w-fit absolute text-lg text-green-600'>Correct</p>}
                 <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[1] == 
-                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-600 shadow-lg' : '' } 
+                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[1] == 
                         quizzescontent[activeQuestionNo - 1].attemptedanswer ? ( isCorrect ?
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>
@@ -63,7 +63,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
             <div className='flex justify-around text-orange-600 space-x-5'>
                 <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[2] == 
-                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-600 shadow-lg' : '' } 
+                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[2] == 
                         quizzescontent[activeQuestionNo - 1].attemptedanswer ? ( isCorrect ?
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>
@@ -71,7 +71,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
                 </div>
                 <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[3] == 
-                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-600 shadow-lg' : '' } 
+                        quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[3] == 
                         quizzescontent[activeQuestionNo - 1].attemptedanswer ? ( isCorrect ?
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>

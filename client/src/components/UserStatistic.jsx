@@ -22,9 +22,9 @@ function UserStatistic( {history, index} ) {
                         <p className='text-green-600'>{history.subject}</p>
                     </div>
                     <div className='pt-3 pr-5 text-xl'>
-                        <p>Taken On</p>
+                        <p>Submitted On</p>
                         <p className='text-green-600'>
-                            {history.takenOn.toString().replace('T', ' ').replace('Z','')}
+                            {history.takenOn.toString().replace('T', ' ').replace('Z','').slice(0, -4)}
                         </p>
                     </div>
                 </div>
@@ -43,9 +43,9 @@ function UserStatistic( {history, index} ) {
                             <p className='text-green-600'>{history.subject}</p>
                         </div>
                         <div className='pt-3 pr-5 text-xl'>
-                            <p>Taken On</p>
+                            <p>Submitted On</p>
                             <p className='text-green-600'>
-                                {history.takenOn.toString().replace('T', ' ').replace('Z','')}
+                                {history.takenOn.toString().replace('T', ' ').replace('Z','').slice(0, -4)}
                             </p>
                         </div>
                     </div>
