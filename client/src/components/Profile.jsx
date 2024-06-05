@@ -26,19 +26,20 @@ function Profile( {setShowModal, setIsLoggedIn} ) {
             <div className='bg-black rounded-2xl w-48 text-center text-lg mt-4'>
                 <div className='p-2 text-orange-600 border-b border-orange-600'>{username}</div>
                 <div className='p-2 text-white hover:text-orange-600 cursor-pointer'
-                    onClick={() => {setClicked(false); navigate(`profile/${username}`);}}>
+                    onClick={() => {setClicked(false); navigate(`profile/${username}`); 
+                        document.title = 'AcadBlvd | Profile';}}>
                         Profile
                 </div>
                 <div className='p-2 text-white hover:text-orange-600 cursor-pointer'
-                    onClick={() => setShowModal(1)}>
+                    onClick={() => {setShowModal(1); document.title = 'AcadBlvd | Change Password';}}>
                         Change Password 
                 </div>
                 <div className='p-3 text-white hover:text-orange-600 cursor-pointer'
-                    onClick={() => {setIsLoggedIn(false); navigate('/');}}>
+                    onClick={() => {setIsLoggedIn(false); navigate('/'); document.title = 'AcadBlvd';}}>
                     Log Out
                 </div>
                 <div className='p-3 text-white hover:text-red-600 cursor-pointer' 
-                    onClick={() => setShowModal(2)}>
+                    onClick={() => {setShowModal(2); document.title = 'AcadBlvd | Delete Account';}}>
                     Delete Account
                 </div>
             </div>

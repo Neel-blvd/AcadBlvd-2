@@ -25,7 +25,7 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
         <p className='text-orange-600 text-3xl'>
           Delete Account
         </p>
-        <button className='text-white' onClick={() => setShowModal(0)}>
+        <button className='text-white' onClick={() => {setShowModal(0); document.title = 'AcadBlvd | Profile';}}>
           <img src={close} className='w-10 grayscale hover:filter-none'></img>
         </button>
       </div>

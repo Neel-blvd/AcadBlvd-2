@@ -52,7 +52,7 @@ function ChangePasswordModal( {setShowModal} ) {
         <p className='text-orange-600 text-3xl'>
           Change Password
         </p>
-        <button className='' onClick={() => setShowModal(0)}>
+        <button className='' onClick={() => {setShowModal(0); document.title = 'AcadBlvd | Profile';}}>
           <img src={close} className='w-10 grayscale hover:filter-none'></img>
         </button>
       </div>

@@ -21,9 +21,21 @@ function NavBar( {setShowModal, setIsLoggedIn} ) {
     )
     useEffect(() => {
             switch(location.pathname){
-            case "/" : setActivePage(1); break;
-            case "/about" : setActivePage(2); break;
-            case "/contactme" : setActivePage(3); break;
+            case "/" : {
+                document.title = 'AcadBlvd | Home';
+                setActivePage(1);
+            } 
+                break;
+            case "/about" : {
+                document.title = 'AcadBlvd | About';
+                setActivePage(2);
+             } 
+                break;
+            case "/contactme" : {
+                document.title = 'AcadBlvd | Contact';
+                setActivePage(3);
+             } 
+                break;
             default: setActivePage(0);
         }
     },[location.pathname])

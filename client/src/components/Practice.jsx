@@ -54,8 +54,13 @@ function Practice() {
             /></div>
         :
             <div>
-                {entities.map((entity, index) => <PdfFile key={index} link={entity.link}
-                    year={entity.year} type={entity.type} />)
+                {entities.length == 0 ?
+                    <p className='text-orange-600 text-center text-xl'>
+                        Aw, Snap! No question papers available!
+                    </p>
+                :
+                    entities.map((entity, index) => <PdfFile key={index} link={entity.link}
+                        year={entity.year} type={entity.type} />)
                 }
             </div>
         }

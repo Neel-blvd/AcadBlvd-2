@@ -22,7 +22,10 @@ function Quiz() {
             setTimeout(async() => {
                 const x = await fetch(`http://localhost:5000/quizzes/${subjectTitle}`);
                 const y = await x.json();
-                setContents(y.contents);
+                if(y == null)
+                    setContents(null);
+                else
+                    setContents(y.contents);
                 // setOptionSelectedArray(Array(contents.length).fill(0));
             }, 1000)
         }
@@ -30,7 +33,10 @@ function Quiz() {
     }, [])
 
     useEffect(() => {
-        setActiveQuestion(contents[activeQuestionNo-1]);
+        if(contents == null)
+            setActiveQuestion([]); // set to sm else, maybe an empty array
+        else
+            setActiveQuestion(contents[activeQuestionNo-1]);
     }, [activeQuestionNo, contents])
 
 
@@ -131,91 +137,97 @@ function Quiz() {
                     />
                 </div>
             :
-                <div>
-                    <div className='mx-auto w-fit text-orange-600'>
-                        <div className='flex items-end'>
-                            <div>
-                                <div className='flex ml-5'>
-                                    <QuestionSelector qno={1} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[0]} />
-                                    <QuestionSelector qno={2} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[1]} />
-                                    <QuestionSelector qno={3} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[2]} />
-                                    <QuestionSelector qno={4} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[3]} />
-                                    <QuestionSelector qno={5} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[4]} />
+                activeQuestion.length == 0
+                ?
+                    <p className='text-orange-600 text-center text-xl'>
+                        Aw, Snap! No quiz available!
+                    </p>
+                :
+                    <div>
+                        <div className='mx-auto w-fit text-orange-600'>
+                            <div className='flex items-end'>
+                                <div>
+                                    <div className='flex ml-5'>
+                                        <QuestionSelector qno={1} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[0]} />
+                                        <QuestionSelector qno={2} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[1]} />
+                                        <QuestionSelector qno={3} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[2]} />
+                                        <QuestionSelector qno={4} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[3]} />
+                                        <QuestionSelector qno={5} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[4]} />
+                                    </div>
+                                    <div className='flex mt-5 ml-5'>
+                                        <QuestionSelector qno={6} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[5]} />
+                                        <QuestionSelector qno={7} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[6]} />
+                                        <QuestionSelector qno={8} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[7]} />
+                                        <QuestionSelector qno={9} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[8]} />
+                                        <QuestionSelector qno={10} activeQuestionNo={activeQuestionNo} 
+                                            setActiveQuestionNo={setActiveQuestionNo}
+                                            optionSelected={optionSelectedArray[9]} />
+                                    </div>
                                 </div>
-                                <div className='flex mt-5 ml-5'>
-                                    <QuestionSelector qno={6} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[5]} />
-                                    <QuestionSelector qno={7} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[6]} />
-                                    <QuestionSelector qno={8} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[7]} />
-                                    <QuestionSelector qno={9} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[8]} />
-                                    <QuestionSelector qno={10} activeQuestionNo={activeQuestionNo} 
-                                        setActiveQuestionNo={setActiveQuestionNo}
-                                        optionSelected={optionSelectedArray[9]} />
+                                <div>
+                                    <div className='ml-10 mb-6'>
+                                        Attemped <p className='text-green-600 inline text-lg'>
+                                            {attemptedQuestions}
+                                        </p> of 10
+                                    </div>
+                                    <img src={submitButton} className='w-10 ml-10 hover:scale-110 cursor-pointer
+                                        hover:rotate-12 rotate-'
+                                        onClick={handleSubmit}></img>
                                 </div>
                             </div>
-                            <div>
-                                <div className='ml-10 mb-6'>
-                                    Attemped <p className='text-green-600 inline text-lg'>
-                                        {attemptedQuestions}
-                                    </p> of 10
-                                </div>
-                                <img src={submitButton} className='w-10 ml-10 hover:scale-110 cursor-pointer
-                                    hover:rotate-12 rotate-'
-                                    onClick={handleSubmit}></img>
+                        </div>
+                        <div className='w-full mt-10 mb-10'>
+                            <div className='w-11/12 text-white mx-auto text-xl'>
+                                {activeQuestion.question}
                             </div>
                         </div>
-                    </div>
-                    <div className='w-full mt-10 mb-10'>
-                        <div className='w-11/12 text-white mx-auto text-xl'>
-                            {activeQuestion.question}
+                        <div className='flex justify-around text-orange-600 space-x-5 mb-5'>
+                            <input type='radio' id='option1' name='options' className='hidden' value={activeQuestion.answers[0]}
+                                onClick={() => optionSelector(1)}></input>
+                            <label htmlFor='option1' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                                ${optionSelectedArray[activeQuestionNo - 1] == 1 ? 'bg-black border-none' : ''} cursor-pointer`}>
+                                {activeQuestion.answers[0]}
+                            </label>
+                            <input type='radio' id='option2' name='options' className='hidden' value={activeQuestion.answers[1]}
+                                onClick={() => optionSelector(2)}></input>
+                            <label htmlFor='option2' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                                ${optionSelectedArray[activeQuestionNo - 1] == 2 ? 'bg-black border-none' : ''} cursor-pointer`}>
+                                {activeQuestion.answers[1]}
+                            </label>
+                        </div>
+                        <div className='flex justify-around text-orange-600 space-x-5'>
+                            <input type='radio' id='option3' name='options' className='hidden' value={activeQuestion.answers[2]}
+                                onClick={() => optionSelector(3)}></input>
+                            <label htmlFor='option3' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                                ${optionSelectedArray[activeQuestionNo - 1] == 3 ? 'bg-black border-none' : ''} cursor-pointer`}>
+                                {activeQuestion.answers[2]}
+                            </label>
+                            <input type='radio' id='option4' name='options' className='hidden' value={activeQuestion.answers[3]}
+                                onClick={() => optionSelector(4)}></input>
+                            <label htmlFor='option4' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                                ${optionSelectedArray[activeQuestionNo - 1] == 4 ? 'bg-black border-none' : ''} cursor-pointer`}>
+                                {activeQuestion.answers[3]}
+                            </label>
                         </div>
                     </div>
-                    <div className='flex justify-around text-orange-600 space-x-5 mb-5'>
-                        <input type='radio' id='option1' name='options' className='hidden' value={activeQuestion.answers[0]}
-                            onClick={() => optionSelector(1)}></input>
-                        <label htmlFor='option1' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
-                            ${optionSelectedArray[activeQuestionNo - 1] == 1 ? 'bg-black border-none' : ''} cursor-pointer`}>
-                            {activeQuestion.answers[0]}
-                        </label>
-                        <input type='radio' id='option2' name='options' className='hidden' value={activeQuestion.answers[1]}
-                            onClick={() => optionSelector(2)}></input>
-                        <label htmlFor='option2' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
-                            ${optionSelectedArray[activeQuestionNo - 1] == 2 ? 'bg-black border-none' : ''} cursor-pointer`}>
-                            {activeQuestion.answers[1]}
-                        </label>
-                    </div>
-                    <div className='flex justify-around text-orange-600 space-x-5'>
-                        <input type='radio' id='option3' name='options' className='hidden' value={activeQuestion.answers[2]}
-                            onClick={() => optionSelector(3)}></input>
-                        <label htmlFor='option3' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
-                            ${optionSelectedArray[activeQuestionNo - 1] == 3 ? 'bg-black border-none' : ''} cursor-pointer`}>
-                            {activeQuestion.answers[2]}
-                        </label>
-                        <input type='radio' id='option4' name='options' className='hidden' value={activeQuestion.answers[3]}
-                            onClick={() => optionSelector(4)}></input>
-                        <label htmlFor='option4' className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
-                            ${optionSelectedArray[activeQuestionNo - 1] == 4 ? 'bg-black border-none' : ''} cursor-pointer`}>
-                            {activeQuestion.answers[3]}
-                        </label>
-                    </div>
-                </div>
         }
     </div>
   )
