@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import PdfFile from './PdfFile';
 import Filter from './Filter';
 import ScaleLoader from 'react-spinners/ScaleLoader'
+const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
 
 function Practice() {
 
@@ -18,7 +19,7 @@ function Practice() {
             setLinks(null)
             
             setTimeout(async() => {
-                const x = await fetch('http://localhost:5000/qpapers', {
+                const x = await fetch(`${VITE_BACKEND_API}/qpapers`, {
                     method: 'PUT',
                     body:JSON.stringify({subject: subjectTitle, year: filter.year, type: filter.type}),
                     headers: {"Content-Type": 'application/json'}

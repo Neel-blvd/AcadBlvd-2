@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import close from '../public/orangeClose.png'
 import {UserContext} from '../App'
+const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
 
 function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
 
@@ -8,7 +9,7 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
 
   function handleDelete()
   {
-    fetch('http://localhost:5000/users',{
+    fetch(`${VITE_BACKEND_API}/users`,{
       method: 'DELETE',
       body:JSON.stringify({username: username}),
       headers: {"Content-Type": 'application/json'}

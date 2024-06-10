@@ -16,11 +16,12 @@ function Quiz() {
     const username = useContext(UserContext);
     const navigate = useNavigate();
     const [isLoading, setLoading] = useState(false); 
+    const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
     
     useEffect(() => {
         const getQuestions = () => {
             setTimeout(async() => {
-                const x = await fetch(`http://localhost:5000/quizzes/${subjectTitle}`);
+                const x = await fetch(`${VITE_BACKEND_API}/quizzes/${subjectTitle}`);
                 const y = await x.json();
                 if(y == null)
                     setContents(null);
@@ -59,7 +60,7 @@ function Quiz() {
     }
 
     async function handleSubmit(){
-        const x = await fetch(`http://localhost:5000/quizzesTaken/${username}`);
+        const x = await fetch(`${VITE_BACKEND_API}/quizzesTaken/${username}`);
         const quizzesTaken = await x.json();
 
         let actualOptionsArray = [];
@@ -83,7 +84,7 @@ function Quiz() {
         const quizzesHistory = {subject: subjectTitle, quizzescontent: quizzesContent};
 
         // Finally sending the quiz stats to the back-end
-        fetch(`http://localhost:5000/users/${username}`, {
+        fetch(`${VITE_BACKEND_API}/users/${username}`, {
             method: 'PUT',
             body: JSON.stringify({
                 quizzestaken: quizzesTaken + 1,

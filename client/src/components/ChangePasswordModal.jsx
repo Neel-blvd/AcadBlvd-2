@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import close from '../public/orangeClose.png'
 import {UserContext} from '../App'
+const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
 
 function ChangePasswordModal( {setShowModal} ) {
 
@@ -16,7 +17,7 @@ function ChangePasswordModal( {setShowModal} ) {
   async function handleChangePassword()
   {
     const enteredPassword = formData.oldpw;
-    const fetchedPassword = await fetch(`http://localhost:5000/users/${username}`)
+    const fetchedPassword = await fetch(`${VITE_BACKEND_API}/users/${username}`)
     const fetchedPassword2 = await fetchedPassword.json();
     if(fetchedPassword2 != enteredPassword)
       {
@@ -34,7 +35,7 @@ function ChangePasswordModal( {setShowModal} ) {
       else
       {
         setWrongMatchPassword(false);
-        fetch('http://localhost:5000/users', {
+        fetch(`${VITE_BACKEND_API}/users`, {
           method: 'PUT',
           body: JSON.stringify({username: username, password: formData.newpw}),
           headers: {"Content-Type": 'application/json'}

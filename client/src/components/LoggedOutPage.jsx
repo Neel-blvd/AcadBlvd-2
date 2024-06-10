@@ -4,6 +4,7 @@ import bgimg from '../public/darkNightSky.jpg'
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import spaceTravelShorter from '../public/spaceTravel-2Shorter.mp4'
 import { useNavigate } from 'react-router-dom'
+const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
 
 function LoggedOutPage(props) {
 
@@ -28,7 +29,7 @@ function LoggedOutPage(props) {
     {
         e.preventDefault();
         try{
-            const x = await fetch('http://localhost:5000/users', {
+            const x = await fetch(`${VITE_BACKEND_API}/users`, {
                 method: 'POST',
                 body: JSON.stringify(signUpFormData),
                 headers: {'Content-Type': 'application/json'}
@@ -63,7 +64,7 @@ function LoggedOutPage(props) {
         const password = logInFormData.password;
         try
         {
-            const x = await fetch(`http://localhost:5000/users/${username}`)
+            const x = await fetch(`${VITE_BACKEND_API}/users/${username}`)
             if(!x.ok)
                 throw new Error();
             

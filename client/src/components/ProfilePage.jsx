@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import UserStatistic from './UserStatistic';
+const VITE_BACKEND_API = import.meta.env.VITE_BACKEND_API;
 
 function ProfilePage() {
 
@@ -11,7 +12,7 @@ function ProfilePage() {
     useEffect(() => {
         const loadState = () => {
             setTimeout(async() => {
-                const x = await fetch(`http://localhost:5000/users/stats/${username}`);
+                const x = await fetch(`${VITE_BACKEND_API}/users/stats/${username}`);
                 const userStats = await x.json();
                 setUserStats(userStats);
             }, 1000)
