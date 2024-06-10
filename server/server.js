@@ -6,6 +6,7 @@ const Quizzes = require('./models/Quizzes.models');
 const fs = require('fs');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
@@ -202,7 +203,7 @@ app.get('/users/stats/:username', async(req, res) => {
 
 
 
-mongoose.connect('mongodb+srv://neelPhadke:w9Pt4CEp3jg3c97F@cluster0.puocqd9.mongodb.net/acadBlvdDB?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Database connected");
     app.listen(5000, () => console.log("The back-end server is live"));
