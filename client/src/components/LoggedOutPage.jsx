@@ -146,15 +146,15 @@ function LoggedOutPage(props) {
                                 Log In
                             </p>
                         </div>
-                        <form className='w-1/3 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
+                        <form className='w-3/4 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
                             flex flex-col items-center'
                             onSubmit={(e) => handleLogIn(e)}>
-                            <input required type='text' className='bg-black rounded-lg mt-14 p-2 w-2/3 focus:outline-none'
+                            <input required type='text' className='bg-black rounded-lg mt-14 p-2 w-3/4 focus:outline-none'
                                 placeholder='Username:'
                                 value={logInFormData.username}
                                 onChange={(e) => setLogInFormData({...logInFormData, username: e.target.value})}>
                             </input>
-                            <input required type='password' className='bg-black rounded-lg mt-14 p-2 w-2/3 focus:outline-none'
+                            <input required type='password' className='bg-black rounded-lg mt-14 p-2 w-3/4 focus:outline-none'
                                 placeholder='Password:'
                                 value={logInFormData.password}
                                 onChange={(e) => setLogInFormData({...logInFormData, password: e.target.value})}>
@@ -224,22 +224,22 @@ function LoggedOutPage(props) {
                                 Sign Up
                             </p>
                         </div>
-                        <form className='w-1/3 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
+                        <form className='w-3/4 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
                             flex flex-col items-center'
                             onSubmit={(e) => handleSignUp(e)}>
-                            <input required type='text' className='rounded-lg mt-8 p-2 w-2/3 focus:outline-none bg-black placeholder:flex-wrap'
+                            <input required type='text' className='rounded-lg mt-8 p-2 w-3/4 focus:outline-none bg-black placeholder:flex-wrap'
                                 placeholder='First Name:'
                                 value={signUpFormData.firstName}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, firstName: e.target.value})}>
                             </input>
-                            <input required type='text' className='rounded-lg mt-8 p-2 w-2/3 focus:outline-none bg-black placeholder:'
+                            <input required type='text' className='rounded-lg mt-8 p-2 w-3/4 focus:outline-none bg-black placeholder:'
                                 placeholder='Username:'
                                 value={signUpFormData.username}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, username: e.target.value})}>
                             </input>
                             { usernameAlreadyExists &&
                                 <p>Username already exists, try again!</p> }
-                            <input required type='password' className='rounded-lg mt-4 p-2 w-2/3 focus:outline-none bg-black'
+                            <input required type='password' className='rounded-lg mt-4 p-2 w-3/4 focus:outline-none bg-black'
                                 placeholder='Password:'
                                 value={signUpFormData.password}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, password: e.target.value})}>
