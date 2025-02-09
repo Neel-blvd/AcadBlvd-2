@@ -8,7 +8,6 @@ function Profile( {setShowModal, setIsLoggedIn} ) {
 
     const [clicked, setClicked] = useState(false);
     const username = useContext(UserContext);
-    const profilePageUrl = `/profile/${username}`;
     const navigate = useNavigate();
 
 

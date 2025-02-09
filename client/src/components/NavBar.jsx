@@ -96,9 +96,9 @@ function NavBar( {setShowModal, setIsLoggedIn} ) {
                             </button>
                         </div>
                         <div className='w-screen h-screen flex flex-col justify-center space-y-24'>
-                            <button className='text-orange-600 text-3xl'>
-                                <p>My Profile</p>
-                            </button>
+                            <div className='mx-auto'>
+                                <Profile setShowModal={setShowModal} setIsLoggedIn={setIsLoggedIn} />
+                            </div>
                             <button onClick={() => setShowMenu(false)} 
                                 className='text-orange-600 text-3xl'>
                                 <Link to="/">Home</Link>

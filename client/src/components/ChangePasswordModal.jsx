@@ -59,17 +59,17 @@ function ChangePasswordModal( {setShowModal} ) {
       </div>
       <div className='w-1/3 h-96 rounded-2xl bg-black flex flex-col items-center mt-5'>
         
-        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-10 w-80 text-orange-600 focus:outline-none' 
-          placeholder='Enter your current password:'
+        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-10 w-2/3 text-orange-600 focus:outline-none' 
+          placeholder='Current password:'
           onChange={(e) => setFormData({...formData, oldpw: e.target.value})}>
         </input>
         {wrongPassword && <p className='text-orange-600'>Password entered doesn't match with the current password</p>}
-        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-10 w-80 text-orange-600 focus:outline-none' 
-          placeholder='Set up a new password:'
+        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-10 w-2/3 text-orange-600 focus:outline-none' 
+          placeholder='New password:'
           onChange={(e) => setFormData({...formData, newpw: e.target.value})}>
          </input>
-        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-4 w-80 text-orange-600 focus:outline-none' 
-          placeholder='Confirm your new password:'
+        <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-4 w-2/3 text-orange-600 focus:outline-none' 
+          placeholder='Confirm:'
           onChange={(e) => setFormData({...formData, cnewpw: e.target.value})}>
         </input>
         {wrongMatchPassword && <p className='text-orange-600'>Passwords don't match</p>}

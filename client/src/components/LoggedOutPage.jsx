@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../public/AcadBlvd.png'
 import bgimg from '../public/darkNightSky.jpg'
 import ScaleLoader from 'react-spinners/ScaleLoader'
@@ -23,7 +23,12 @@ function LoggedOutPage(props) {
     const setIsLoggedIn = props.setIsLoggedIn;
     const setUsername = props.setUsername;
     const navigate = useNavigate();
+    const [scWidth, setScWidth] = useState(window.innerWidth);
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => setScWidth(window.innerWidth))
+    }, [])
 
     async function handleSignUp(e)
     {
@@ -98,9 +103,16 @@ function LoggedOutPage(props) {
             isLoading
             ?
                 <div className='bg-zinc-900 h-screen font-mono'>
-                    <video autoPlay className='absolute w-full'>
-                        <source src={spaceTravelShorter} type='video/mp4'></source>
-                    </video>
+                    {
+                    scWidth > 768
+                    ?
+                        <video autoPlay className='absolute w-full'>
+                            <source src={spaceTravelShorter} type='video/mp4'></source>
+                        </video>
+                    :
+                        <>
+                        </>
+                    }
                     <div className='absolute w-full'>   
                         <button>
                             <img src={logo} className='w-28'></img>
@@ -124,7 +136,7 @@ function LoggedOutPage(props) {
                 </div>
             :
                 <div className='bg-zinc-900 h-screen text-orange-600 overflow-x-hidden font-mono'>
-                    <img className='absolute' src={bgimg}></img>
+                    <img className='absolute h-full w-full' src={bgimg}></img>
                     <div className='absolute w-full'>
                         <button>
                             <img src={logo} className='w-28'></img>
@@ -137,12 +149,12 @@ function LoggedOutPage(props) {
                         <form className='w-1/3 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
                             flex flex-col items-center'
                             onSubmit={(e) => handleLogIn(e)}>
-                            <input required type='text' className='bg-black rounded-lg mt-14 p-2 w-80 focus:outline-none'
+                            <input required type='text' className='bg-black rounded-lg mt-14 p-2 w-2/3 focus:outline-none'
                                 placeholder='Username:'
                                 value={logInFormData.username}
                                 onChange={(e) => setLogInFormData({...logInFormData, username: e.target.value})}>
                             </input>
-                            <input required type='password' className='bg-black rounded-lg mt-14 p-2 w-80 focus:outline-none'
+                            <input required type='password' className='bg-black rounded-lg mt-14 p-2 w-2/3 focus:outline-none'
                                 placeholder='Password:'
                                 value={logInFormData.password}
                                 onChange={(e) => setLogInFormData({...logInFormData, password: e.target.value})}>
@@ -169,9 +181,16 @@ function LoggedOutPage(props) {
             {isLoading
             ?
                 <div className='bg-zinc-900 h-screen font-mono'>
-                    <video autoPlay className='absolute w-full'>
-                        <source src={spaceTravelShorter} type='video/mp4'></source>
-                    </video>
+                    {
+                    scWidth > 768
+                    ?
+                        <video autoPlay className='absolute w-full'>
+                            <source src={spaceTravelShorter} type='video/mp4'></source>
+                        </video>
+                    :
+                        <>
+                        </>
+                    }
                     <div className='absolute w-full'>   
                         <button>
                             <img src={logo} className='w-28'></img>
@@ -195,7 +214,7 @@ function LoggedOutPage(props) {
                 </div>
             :
                 <div className='bg-zinc-900 h-screen text-orange-600 overflow-x-hidden font-mono'>
-                    <img src={bgimg} className='absolute'></img>
+                    <img src={bgimg} className='absolute h-full w-full'></img>
                     <div className='absolute w-full'>   
                         <button>
                             <img src={logo} className='w-28'></img>
@@ -208,20 +227,20 @@ function LoggedOutPage(props) {
                         <form className='w-1/3 h-96 mx-auto mt-2 border-orange-600 shadow-md shadow-orange-600 bg-neutral-900 bg-opacity-40
                             flex flex-col items-center'
                             onSubmit={(e) => handleSignUp(e)}>
-                            <input required type='text' className='rounded-lg mt-8 p-2 w-80 focus:outline-none bg-black'
+                            <input required type='text' className='rounded-lg mt-8 p-2 w-2/3 focus:outline-none bg-black placeholder:flex-wrap'
                                 placeholder='First Name:'
                                 value={signUpFormData.firstName}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, firstName: e.target.value})}>
                             </input>
-                            <input required type='text' className='rounded-lg mt-8 p-2 w-80 focus:outline-none bg-black'
-                                placeholder='Set up a username:'
+                            <input required type='text' className='rounded-lg mt-8 p-2 w-2/3 focus:outline-none bg-black placeholder:'
+                                placeholder='Username:'
                                 value={signUpFormData.username}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, username: e.target.value})}>
                             </input>
                             { usernameAlreadyExists &&
                                 <p>Username already exists, try again!</p> }
-                            <input required type='password' className='rounded-lg mt-4 p-2 w-80 focus:outline-none bg-black'
-                                placeholder='Set up a password:'
+                            <input required type='password' className='rounded-lg mt-4 p-2 w-2/3 focus:outline-none bg-black'
+                                placeholder='Password:'
                                 value={signUpFormData.password}
                                 onChange={(e) => setSignUpFormData({...signUpFormData, password: e.target.value})}>
                             </input>
