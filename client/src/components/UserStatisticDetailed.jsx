@@ -36,12 +36,12 @@ function UserStatisticDetailed( {quizzescontent} ) {
         </div>
 
         <div className='w-full mt-10 mb-10'>
-            <div className='w-11/12 text-white mx-auto text-xl'>
+            <div className='w-11/12 text-white mx-auto text-sm md:text-xl'>
                 {quizzescontent[activeQuestionNo - 1].question}
             </div>
 
             <div className='flex justify-around text-orange-600 space-x-5 mb-5 mt-5'>
-                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-sm md:text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[0] == 
                         quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' }
                     ${ quizzescontent[activeQuestionNo - 1].answers[0] == 
@@ -49,9 +49,9 @@ function UserStatisticDetailed( {quizzescontent} ) {
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>
                     {quizzescontent[activeQuestionNo - 1].answers[0]}
                 </div>
-                {!isCorrect && <p className='w-fit absolute text-lg text-red-600'>Incorrect</p>}
-                {isCorrect && <p className='w-fit absolute text-lg text-green-600'>Correct</p>}
-                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                {!isCorrect && <p className='w-fit absolute text-red-600 text-sm md:text-lg'>Incorrect</p>}
+                {isCorrect && <p className='w-fit absolute text-sm md:text-lg text-green-600'>Correct</p>}
+                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-sm md:text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[1] == 
                         quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[1] == 
@@ -61,7 +61,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
                 </div>
             </div>
             <div className='flex justify-around text-orange-600 space-x-5'>
-                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-sm md:text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[2] == 
                         quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[2] == 
@@ -69,7 +69,7 @@ function UserStatisticDetailed( {quizzescontent} ) {
                         'text-green-600 shadow-green-600 shadow-lg' : 'text-red-600 shadow-red-600 shadow-lg' ) : '' } `}>
                     {quizzescontent[activeQuestionNo - 1].answers[2]}
                 </div>
-                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-xl border-orange-600
+                <div className={`shadow-sm shadow-orange-600 rounded-xl p-2 px-10 text-sm md:text-xl border-orange-600
                     ${ quizzescontent[activeQuestionNo - 1].answers[3] == 
                         quizzescontent[activeQuestionNo - 1].correctanswer ? 'text-green-600 shadow-green-500 shadow-lg' : '' } 
                     ${ quizzescontent[activeQuestionNo - 1].answers[3] == 

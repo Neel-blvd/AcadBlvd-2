@@ -49,7 +49,7 @@ function ChangePasswordModal( {setShowModal} ) {
 
   return (
     <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center font-mono'>
-      <div className='flex justify-between w-1/3'>
+      <div className='flex w-3/4 md:w-1/3 justify-between'>
         <p className='text-orange-600 text-3xl'>
           Change Password
         </p>
@@ -57,8 +57,7 @@ function ChangePasswordModal( {setShowModal} ) {
           <img src={close} className='w-10 grayscale hover:filter-none'></img>
         </button>
       </div>
-      <div className='w-1/3 h-96 rounded-2xl bg-black flex flex-col items-center mt-5'>
-        
+      <div className='w-3/4 md:w-1/3 h-96 rounded-2xl bg-black flex flex-col items-center mt-5'>
         <input type='text' className='bg-zinc-900 p-2 rounded-xl mt-10 w-2/3 text-orange-600 focus:outline-none' 
           placeholder='Current password:'
           onChange={(e) => setFormData({...formData, oldpw: e.target.value})}>

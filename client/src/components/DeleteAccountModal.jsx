@@ -22,7 +22,7 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
 
   return (
     <div className='w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center font-mono'>
-      <div className='flex justify-between w-1/3'>
+      <div className='flex justify-between w-3/4 md:w-1/3'>
         <p className='text-orange-600 text-3xl'>
           Delete Account
         </p>
@@ -30,7 +30,7 @@ function DeleteAccountModal( {setShowModal, setIsLoggedIn} ) {
           <img src={close} className='w-10 grayscale hover:filter-none'></img>
         </button>
       </div>
-      <div className='w-1/3 h-96 rounded-2xl bg-black mt-5'>
+      <div className='w-3/4 md:w-1/3 h-96 rounded-2xl bg-black mt-5'>
         <p className='text-orange-600 text-center text-2xl pt-20'>
           Are you sure you want to delete your account?
         </p>
